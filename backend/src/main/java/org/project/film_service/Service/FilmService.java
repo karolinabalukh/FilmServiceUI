@@ -14,4 +14,5 @@ public interface FilmService {
     Page<Film> list(FilmListFilterDto filter);
     byte[] generateReport(FilmListFilterDto filter);
     FilmUploadResultDto uploadJson(InputStream jsonStream);
+    Page<Film> getFilms(String title, Integer year, int page, int size);
 }

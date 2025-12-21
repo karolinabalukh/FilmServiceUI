@@ -25,11 +25,11 @@ import LeftNavBar from './LeftNavBar';
 
 const getClasses = createUseStyles((theme) => ({
   container: {
-    color: theme.header.color.text.primary,
-    background: theme.header.color.background,
-    boxShadow: '0px 0px 6px 0px',
+    color: '#ffffff',
+    background: 'linear-gradient(90deg, #6a11cb, #8e2de2)',
+    boxShadow: '0 4px 20px rgba(138, 43, 226, 0.4)',
     display: 'flex',
-    height: `${theme.header.height}px`,
+    height: '72px',
     zIndex: 1300,
   },
   content: {
@@ -41,6 +41,11 @@ const getClasses = createUseStyles((theme) => ({
   },
   hover: {
     padding: `${theme.spacing(0.5)}px ${theme.spacing(1)}px`,
+    borderRadius: '8px',
+    transition: 'background 0.2s',
+    '&:hover': {
+      background: 'rgba(255,255,255,0.15)',
+    },
   },
   selectedLang: {
     display: 'flex',

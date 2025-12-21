@@ -1,4 +1,6 @@
 package org.project.film_service.Controller;
+
+import jakarta.validation.Valid;
 import org.project.film_service.Entity.Director;
 import org.project.film_service.Service.DirectorService;
 import lombok.RequiredArgsConstructor;
@@ -18,12 +20,12 @@ public class DirectorController {
     }
 
     @PostMapping
-    public ResponseEntity<Director> createDirector(@RequestBody Director director) {
+    public ResponseEntity<Director> createDirector(@Valid @RequestBody Director director) {
         return ResponseEntity.ok(directorService.createDirector(director));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Director> update(@PathVariable Long id, @RequestBody Director director) {
+    public ResponseEntity<Director> update(@PathVariable Long id, @Valid @RequestBody Director director) {
         return ResponseEntity.ok(directorService.updateDirector(id, director));
     }
 

@@ -1,12 +1,12 @@
 const commonColors = {
   text: {
-    primary: '#027f0b',
+    primary: '#43027f',
     primaryContrast: '#fffefa',
-    primaryHeader: '#16bb00',
-    secondary: '#60a374',
-    secondaryHeader: '#00ff1a',
-    tertiary: '#20bf49',
-    tertiaryHeader: '#14c900',
+    primaryHeader: '#ffffff',
+    secondary: '#7b60a3',
+    secondaryHeader: '#d6d2e6',
+    tertiary: '#bf2070',
+    tertiaryHeader: '#ffffff',
     error: '#D3000C',
     info: '#1C7FDB',
     success: '#007504',
@@ -36,9 +36,9 @@ const theme = {
         text: commonColors.text.primaryHeader,
       },
       primary: {
-        background: '#51b051',
-        backgroundDisabled: '#51b051',
-        backgroundHovered: '#60bb60',
+        background: '#6251b0',
+        backgroundDisabled: '#9051b0',
+        backgroundHovered: '#6360bb',
         text: commonColors.text.primaryContrast,
       },
       secondary: {

@@ -54,7 +54,6 @@ public class FilmServiceImpl implements FilmService {
             if (filter.year() != null) {
                 predicates.add(cb.equal(root.get("year"), filter.year()));
             }
-
             return cb.and(predicates.toArray(new Predicate[0]));
         };
     }
@@ -131,16 +130,11 @@ public class FilmServiceImpl implements FilmService {
         int failure = 0;
 
         try (JsonParser parser = objectMapper.createParser(jsonStream)) {
-
-            // Перевіряємо, чи файл починається як масив (з дужки [ )
             if (parser.nextToken() == com.fasterxml.jackson.core.JsonToken.START_ARRAY) {
-
-                // Читаємо поки масив не закінчиться ( ] )
                 while (parser.nextToken() != com.fasterxml.jackson.core.JsonToken.END_ARRAY) {
                     try {
-                        // Читаємо один об'єкт фільму
                         FilmCreateDto dto = objectMapper.readValue(parser, FilmCreateDto.class);
-                        create(dto); // Пробуємо зберегти в базу
+                        create(dto);
                         success++;
                     } catch (Exception e) {
                         failure++;
@@ -148,7 +142,6 @@ public class FilmServiceImpl implements FilmService {
                     }
                 }
             }
-            // Якщо файл не масив, а просто набір об'єктів (NDJSON)
             else {
                 MappingIterator<FilmCreateDto> iterator = objectMapper.readerFor(FilmCreateDto.class).readValues(parser);
                 while (iterator.hasNext()) {
@@ -166,5 +159,22 @@ public class FilmServiceImpl implements FilmService {
             System.err.println("JSON parsing error: " + e.getMessage());
         }
         return new FilmUploadResultDto(success, failure);
+    }
+
+    @Override
+    public Page<Film> getFilms(String title, Integer year, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+
+        Specification<Film> spec = (root, query, cb) -> {
+            List<Predicate> predicates = new ArrayList<>();
+            if (title != null && !title.isEmpty()) {
+                predicates.add(cb.like(cb.lower(root.get("title")), "%" + title.toLowerCase() + "%"));
+            }
+            if (year != null) {
+                predicates.add(cb.equal(root.get("year"), year));
+            }
+            return cb.and(predicates.toArray(new Predicate[0]));
+        };
+        return filmRepository.findAll(spec, pageable);
     }
 }

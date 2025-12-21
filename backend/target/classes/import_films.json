@@ -1,0 +1,92 @@
+[
+  {
+    "title": "Wicked",
+    "year": 2024,
+    "duration": 160,
+    "genre": "fairy tale",
+    "rating": 7.4,
+    "description": "Elphaba, a young woman ridiculed for her green skin, and Galinda, a popular girl, become friends at Shiz University in the Land of Oz.",
+    "directorId": 1
+  },
+  {
+    "title": "The Godfather",
+    "year": 1972,
+    "duration": 177,
+    "genre": "crime",
+    "rating": 9.2,
+    "description": "The story centers on the patriarch, Vito Corleone, and the transformation of his youngest son, Michael, from a reluctant outsider to a ruthless mob boss.",
+    "directorId": 2
+  },
+  {
+    "title": "The Butterfly Effect",
+    "year": 2004,
+    "duration": 114,
+    "genre": "thriller",
+    "rating": 7.5,
+    "description": "College student Evan Treborn discovers he can travel back to painful moments in his childhood by reading his journals.",
+    "directorId": 3
+  },
+  {
+    "title": "Malèna",
+    "year": 2000,
+    "duration": 92,
+    "genre": "drama",
+    "rating": 8.6,
+    "description": "12-year-old boy named Renato in a small Sicilian town during World War II becomes obsessed with the town's most beautiful woman.",
+    "directorId": 1
+  },
+  {
+    "title": "The Polar Express",
+    "year": 2004,
+    "duration": 100,
+    "genre": "fantasy",
+    "rating": 8.4,
+    "description": "A young boy who doubts Santa Claus on Christmas Eve is taken on a magical train ride to the North Pole.",
+    "directorId": 2
+  },
+  {
+    "title": "The Wizard of Oz",
+    "year": 1939,
+    "duration": 102,
+    "genre": "fantasy, musical",
+    "rating": 8.0,
+    "description": "Dorothy is swept away by a tornado to a magical land.",
+    "directorId": 3
+  },
+  {
+    "title": "Citizen Kane",
+    "year": 1941,
+    "duration": 119,
+    "genre": "drama, mystery",
+    "rating": 8.3,
+    "description": "A reporter investigates the final word of a newspaper magnate.",
+    "directorId": 1
+  },
+  {
+    "title": "Casablanca",
+    "year": 1942,
+    "duration": 102,
+    "genre": "romance, drama",
+    "rating": 8.5,
+    "description": "A cynical expatriate must choose between love and duty.",
+    "directorId": 2
+  },
+  {
+    "title": "Parasite",
+    "year": 2019,
+    "duration": 132,
+    "genre": "thriller, drama",
+    "rating": 8.6,
+    "description": "A poor family schemes to infiltrate a wealthy household.",
+    "directorId": 3
+  },
+  {
+    "title": "Avengers: Endgame",
+    "year": 2019,
+    "duration": 181,
+    "genre": "action, adventure, sci-fi",
+    "rating": 8.4,
+    "description": "The Avengers take one final stand against Thanos.",
+    "directorId": 1
+  }
+]
