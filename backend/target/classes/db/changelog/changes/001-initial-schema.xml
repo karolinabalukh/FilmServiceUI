@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="1" author="student">
+        <createTable tableName="directors">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="birth_date" type="VARCHAR(255)"/>
+            <column name="country" type="VARCHAR(255)"/>
+        </createTable>
+
+        <createTable tableName="films">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="year" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="duration" type="INT"/>
+            <column name="genre" type="VARCHAR(255)"/>
+            <column name="rating" type="DOUBLE"/>
+            <column name="description" type="VARCHAR(2000)"/>
+
+            <column name="director_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_film_director" references="directors(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="student">
+        <insert tableName="directors">
+            <column name="name" value="Christopher Nolan"/>
+            <column name="country" value="UK"/>
+            <column name="birth_date" value="1970-07-30"/>
+        </insert>
+        <insert tableName="directors">
+            <column name="name" value="Steven Spielberg"/>
+            <column name="country" value="USA"/>
+            <column name="birth_date" value="1946-12-18"/>
+        </insert>
+        <insert tableName="directors">
+            <column name="name" value="Quentin Tarantino"/>
+            <column name="country" value="USA"/>
+            <column name="birth_date" value="1963-03-27"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

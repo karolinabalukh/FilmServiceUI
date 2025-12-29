@@ -3,6 +3,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.project.film_service.Entity.Film;
 import org.project.film_service.Service.FilmService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.project.film_service.dto.*;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/films")
+@CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 public class FilmController {
     private final FilmService filmService;
@@ -69,5 +71,15 @@ public class FilmController {
     @PostMapping("/upload")
     public ResponseEntity<FilmUploadResultDto> upload(@RequestParam("file") MultipartFile file) throws IOException {
         return ResponseEntity.ok(filmService.uploadJson(file.getInputStream()));
+    }
+
+    @GetMapping
+    public Page<Film> getAllFilms(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(required = false) String title,
+            @RequestParam(required = false) Integer year
+    ) {
+        return filmService.getFilms(title, year, page, size);
     }
 }

@@ -14,6 +14,7 @@ import AuthoritiesProvider from 'misc/providers/AuthoritiesProvider';
 import DefaultPage from 'pageProviders/Default';
 import Loading from 'components/Loading';
 import LoginPage from 'pageProviders/Login';
+import FilmsPage from 'pageProviders/Films';
 import PageContainer from 'pageProviders/components/PageContainer';
 import pageURLs from 'constants/pagesURLs';
 import SecretPage from 'pageProviders/Secret';
@@ -70,58 +71,43 @@ function App() {
                   </PageContainer>
                 )}
                 {!isFetchingUser && (
-                  <Routes>
-                    <Route
-                      element={<DefaultPage />}
-                      path={`${pageURLs[pages.defaultPage]}`}
-                    />
-                    <Route
-                      element={<SecretPage />}
-                      path={`${pageURLs[pages.secretPage]}`}
-                    />
-                    <Route
-                      element={(
-                        <LoginPage
-                          errors={errors}
-                          isFailedSignIn={isFailedSignIn}
-                          isFailedSignUp={isFailedSignUp}
-                          isFetchingSignIn={isFetchingSignIn}
-                          isFetchingSignUp={isFetchingSignUp}
-                          onSignIn={({
-                            email,
-                            login,
-                            password,
-                          }) => dispatch(actionsUser.fetchSignIn({
-                            email,
-                            login,
-                            password,
-                          }))}
-                          onSignUp={({
-                            email,
-                            firstName,
-                            lastName,
-                            login,
-                            password,
-                          }) => dispatch(actionsUser.fetchSignUp({
-                            email,
-                            firstName,
-                            lastName,
-                            login,
-                            password,
-                          }))}
-                        />
-                      )}
-                      path={`${pageURLs[pages.login]}`}
-                    />
-                    <Route
-                      element={(
-                        <MissedPage
-                          redirectPage={`${pageURLs[pages.defaultPage]}`}
-                        />
-                      )}
-                      path="*"
-                    />
-                  </Routes>
+                    <Routes>
+                      <Route
+                          element={<DefaultPage />}
+                          path={`${pageURLs[pages.defaultPage]}`}
+                      />
+                      <Route
+                          element={<SecretPage />}
+                          path={`${pageURLs[pages.secretPage]}`}
+                      />
+                      <Route
+                          element={<LoginPage
+                              errors={errors}
+                              isFailedSignIn={isFailedSignIn}
+                              isFailedSignUp={isFailedSignUp}
+                              isFetchingSignIn={isFetchingSignIn}
+                              isFetchingSignUp={isFetchingSignUp}
+                              onSignIn={({ email, login, password }) => dispatch(actionsUser.fetchSignIn({ email, login, password }))}
+                              onSignUp={({ email, firstName, lastName, login, password }) => dispatch(actionsUser.fetchSignUp({ email, firstName, lastName, login, password }))}
+                          />}
+                          path={`${pageURLs[pages.login]}`}
+                      />
+
+                      {/* 👇👇👇 ОСЬ ТУТ ГОЛОВНА ЗМІНА 👇👇👇 */}
+                      <Route
+                          element={<FilmsPage />}
+                          /* Додаємо "/*" в кінці. Це означає: "все, що починається на /films, віддавай у FilmsPage" */
+                          path={`${pageURLs[pages.filmsPage]}/*`}
+                      />
+
+                      {/* Тимчасовий роут "/films/:id" ми ВИДАЛИЛИ, бо він тепер всередині FilmsPage */}
+
+                      <Route
+                          element={<MissedPage redirectPage={`${pageURLs[pages.defaultPage]}`} />}
+                          path="*"
+                      />
+                    </Routes>
+
                 )}
               </IntlProvider>
             )}
